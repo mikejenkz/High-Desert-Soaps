@@ -30,7 +30,7 @@ function AppAppBar() {
           </Link>
 
           <Box sx={{ flex: 1, display: 'flex', justifyContent: 'flex-end' }}>
-          <Link to = "/shopping-cart" style={{color:"inherit", fontSize:30,textDecoration:"none"}}>
+          <Link to = "/shopping-cart/" style={{color:"inherit", fontSize:30,textDecoration:"none"}}>
               <ShoppingCartIcon/>
             </Link>
             <Link to = "/sign-in/" style={{color:"inherit", fontSize:30,textDecoration:"none"}}>

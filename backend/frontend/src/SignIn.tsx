@@ -1,116 +1,150 @@
 import * as React from 'react';
-import { Field, Form, FormSpy } from 'react-final-form';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
+import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { Link } from "react-router-dom"
+import Checkbox from '@mui/material/Checkbox';
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
-import Typography from './modules/components/Typography';
-import AppFooter from './modules/views/AppFooter';
-import AppAppBar from './modules/views/AppAppBar';
-import AppForm from './modules/views/AppForm';
-import { email, required } from './modules/form/validation';
-import RFTextField from './modules/form/RFTextField';
-import FormButton from './modules/form/FormButton';
-import FormFeedback from './modules/form/FormFeedback';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from 'axios';
 import withRoot from './modules/withRoot';
+import { useState } from 'react';
+import { UserContext } from './App';
+import { useContext } from 'react';
+import AppFooter from './modules/views/AppFooter';
 
-function SignIn() {
-  const [sent, setSent] = React.useState(false);
+// function Copyright(props:any) {
+//   return (
+//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
+//       {'Copyright © '}
+//       {/* <Link color="inherit" href="https://mui.com/">
+//         Your Website
+//       </Link>{' '} */}
+//       {new Date().getFullYear()}
+//       {'.'}
+//     </Typography>
+//   );
+// }
 
-  const validate = (values: { [index: string]: string }) => {
-    const errors = required(['email', 'password'], values);
+const theme = createTheme();
 
-    if (!errors.email) {
-      const emailError = email(values.email);
-      if (emailError) {
-        errors.email = emailError;
-      }
+const SignIn = () => {
+  const {user} = useContext(UserContext)
+  const {setUser} = useContext(UserContext)
+
+  const handleSubmit = async (event:any) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    console.log(data)
+    let response = await axios.post('../user/login/', data)
+    console.log(response.data.email)
+    console.log(response.data.firstName)
+    setUser({username: response.data.email, first_name: response.data.firstName})
+
+  };
+
+const logOut = async(event:any) => {
+    event.preventDefault();
+    let response = await axios.post('/user/logout/')
+    if(response.data.logout){
+      alert("You Have Logged Out")
+        setUser({user: "Logged Out"})
     }
-
-    return errors;
-  };
-
-  const handleSubmit = () => {
-    setSent(true);
-  };
-
-  return (
-    <React.Fragment>
-      <AppAppBar />
-      <AppForm>
-        <React.Fragment>
-          <Typography variant="h3" gutterBottom marked="center" align="center">
-            Sign In
-          </Typography>
-          <Typography variant="body2" align="center">
-            {'Not a member yet? '}
-            <Link
-              href="/sign-up/"
-              align="center"
-              underline="always"
+} 
+  console.log(user)
+  
+  if (user.username != undefined){
+    
+    return(
+      <div>
+        <a>
+        Welcome {user.first_name}
+        Thank you for being a member of our community.
+        </a>
+        <Button
+              fullWidth
+              onClick = {logOut}
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up here
-            </Link>
-          </Typography>
-        </React.Fragment>
-        <Form
-          onSubmit={handleSubmit}
-          subscription={{ submitting: true }}
-          validate={validate}
+              Logout
+            </Button>
+            <AppFooter/>
+      </div>
+    );
+  }
+
+    return (
+      <> 
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
         >
-          {({ handleSubmit: handleSubmit2, submitting }) => (
-            <Box component="form" onSubmit={handleSubmit2} noValidate sx={{ mt: 6 }}>
-              <Field
-                autoComplete="email"
-                autoFocus
-                component={RFTextField}
-                disabled={submitting || sent}
-                fullWidth
-                label="Email"
-                margin="normal"
-                name="email"
-                required
-                size="large"
-              />
-              <Field
-                fullWidth
-                size="large"
-                component={RFTextField}
-                disabled={submitting || sent}
-                required
-                name="password"
-                autoComplete="current-password"
-                label="Password"
-                type="password"
-                margin="normal"
-              />
-              <FormSpy subscription={{ submitError: true }}>
-                {({ submitError }) =>
-                  submitError ? (
-                    <FormFeedback error sx={{ mt: 2 }}>
-                      {submitError}
-                    </FormFeedback>
-                  ) : null
-                }
-              </FormSpy>
-              <FormButton
-                sx={{ mt: 3, mb: 2 }}
-                disabled={submitting || sent}
-                size="large"
-                color="secondary"
-                fullWidth
-              >
-                {submitting || sent ? 'In progress…' : 'Sign In'}
-              </FormButton>
-            </Box>
-          )}
-        </Form>
-        <Typography align="center">
-          <Link underline="always" href="/forgot-password/">
-            Forgot password?
-          </Link>
-        </Typography>
-      </AppForm>
-      <AppFooter />
-    </React.Fragment>
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+              autoFocus
+            />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+            />
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign In
+            </Button>
+            <Grid container>
+              <Grid item xs>
+                <Link to = "/">
+                  Forgot password?
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to ="/sign-up/">
+                  Don't have an account? Sign Up
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+         {/* <Copyright sx={{ mt: 8, mb: 4 }} />  */}
+      </Container>
+      <AppFooter/>
+      </>
   );
 }
 

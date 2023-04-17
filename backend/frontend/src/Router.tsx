@@ -7,6 +7,8 @@ import SignUp from "./SignUp";
 import { RotateRight } from "@mui/icons-material";
 import ForgotPassword from "./ForgotPassword";
 import React from "react";
+import ShoppingCart from "./ShoppingCart";
+import Products from "./modules/views/Products";
 
 const router = createBrowserRouter ([
     {
@@ -29,6 +31,15 @@ const router = createBrowserRouter ([
         {
             path: 'forgot-password',
             element: <ForgotPassword/>
+        },
+        {
+            path: 'shopping-cart',
+            element: <ShoppingCart/>
+
+        },
+        {
+            path: 'products',
+            element: <Products/>
         }
     ]
 

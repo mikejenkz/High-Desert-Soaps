@@ -8,18 +8,16 @@ import ProductHowItWorks from './modules/views/ProductHowItWorks';
 import ProductCTA from './modules/views/ProductCTA';
 import AppAppBar from './modules/views/AppAppBar';
 import withRoot from './modules/withRoot';
-import SoapProducts from './modules/components/SoapProducts';
 
 function Index() {
   return (
     <React.Fragment>
-      <AppAppBar />
+      {/* <AppAppBar /> */}
       <ProductHero />
       <ProductValues />
       <ProductCategories />
       <ProductCTA />
       <ProductSmokingHero />
-      <SoapProducts/>
       <AppFooter />
     </React.Fragment>
   );

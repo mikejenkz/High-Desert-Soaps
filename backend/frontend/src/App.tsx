@@ -1,47 +1,37 @@
-import { useState } from 'react'
-import { useQuery } from 'react-query'
-import './App.css'
 import { Outlet } from 'react-router-dom'
-import { LinearProgress } from '@mui/material'
-import Item from './modules/components/Item'
-import { Wrapper } from './modules/components/Item.styles'
-import Grid from '@mui/material'
+import AppAppBar from './modules/views/AppAppBar';
+import withRoot from './modules/withRoot';
+import { getToken } from './modules/components/CsrfToken';
+import { useEffect, useState } from 'react';
+import { currUser } from './modules/components/utilities';
+import { createContext } from 'react';
+import { ReactDOM } from 'react';
+import React from 'react';
 
-export type CartItemType = {
-  id: number;
-  category: string;
-  description: string;
-  image: string;
-  price: number;
-  title: string;
-  amount: number;
-}
+export const UserContext = createContext(null)
 
-const getProducts = async (): Promise<CartItemType[]> =>
-  await(await fetch('https://fakestoreapi.com/products')).json()
+function App() {
+  const [user, setUser] = useState(null);
 
-const App = () => {
-  const { data, isLoading, error} = useQuery<CartItemType[]>(
-    'prodcuts',
-    getProducts
-  );
-  console.log(data)
+  getToken()
 
-  const getTotalItems = () => null
+  useEffect(() => {
+    const getCurrUser = async () => {
+      setUser(await currUser());
+    };
+    getCurrUser();
+  }, []);
 
-  const handleAddToCart = (clickedItem: CartItemType) => null
-
-  const handleRemoveFromCart = () => null
-
-  if (isLoading) return <LinearProgress/>;
-  if (error) return <div>Something Went Wrong</div>
 
   return(     
     <div>
-  <Outlet/>
+  <AppAppBar/>
+  <UserContext.Provider value={{user, setUser}} >
+        <Outlet />
+    </UserContext.Provider>
   </div>
   )
  };
 
 
-export default App
+export default withRoot(App)

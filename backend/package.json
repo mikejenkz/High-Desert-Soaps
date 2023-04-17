@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "django": "^1.0.0",
+    "phosphor-react": "^1.4.1",
+    "psycopg2-binary": "^0.0.1"
+  }
+}
