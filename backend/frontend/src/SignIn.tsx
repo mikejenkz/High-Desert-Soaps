@@ -35,8 +35,8 @@ import AppFooter from './modules/views/AppFooter';
 const theme = createTheme();
 
 const SignIn = () => {
-  const {user} = useContext(UserContext)
-  const {setUser} = useContext(UserContext)
+  const {user}:any = useContext(UserContext)
+  const {setUser}:any = useContext(UserContext)
 
   const handleSubmit = async (event:any) => {
     event.preventDefault();

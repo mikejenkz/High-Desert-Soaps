@@ -12,6 +12,8 @@ export const UserContext = createContext(null)
 
 function App() {
   const [user, setUser] = useState(null);
+  const [shop, setShop] = useState([])
+  const [count, setCount] = useState(0)
 
   getToken()
 
@@ -23,10 +25,11 @@ function App() {
   }, []);
 
 
+
   return(     
     <div>
   <AppAppBar/>
-  <UserContext.Provider value={{user, setUser}} >
+  <UserContext.Provider value={{user, setUser,shop,setShop,count,setCount}} >
         <Outlet />
     </UserContext.Provider>
   </div>

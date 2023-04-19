@@ -9,6 +9,7 @@ import ForgotPassword from "./ForgotPassword";
 import React from "react";
 import ShoppingCart from "./ShoppingCart";
 import Products from "./modules/views/Products";
+import Payment from "./Payment";
 
 const router = createBrowserRouter ([
     {
@@ -40,6 +41,10 @@ const router = createBrowserRouter ([
         {
             path: 'products',
             element: <Products/>
+        },
+        {
+            path: 'payments',
+            element: <Payment/>
         }
     ]
 
