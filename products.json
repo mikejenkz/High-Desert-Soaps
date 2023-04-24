@@ -4,44 +4,44 @@
         "model": "shop_app.item",
         "pk" : 1,
         "fields" : {
-            "name" : "Boiled Peanuts",
+            "name" : "Java",
             "category" : 1,
-            "cost" : 3.45,
+            "cost" : 5.00,
             "quantity": 3,
-            "image" : "https://m.media-amazon.com/images/I/51Y2fI2fCkL.jpg"
+            "image" : "https://th.bing.com/th/id/OIP.0va1ds0z_vjkFGbOIfzAvwHaHa?pid=ImgDet&rs=1"
         }
     },
     {
         "model": "shop_app.item",
         "pk" : 2,
         "fields" : {
-            "name" : "Swedish Fish",
+            "name" : "Crystal Swirl",
             "category" : 1,
-            "cost" : 11.25,
+            "cost" : 4.00,
             "quantity": 5,
-            "image" : "https://m.media-amazon.com/images/I/91B1qWAL6vL._SL1500_.jpg"
+            "image" : "https://th.bing.com/th/id/OIP.rPsseNgzM-j6zC4lLYpCHAHaG0?pid=ImgDet&rs=1"
         }
     },
     {
         "model": "shop_app.item",
         "pk" : 3,
         "fields" : {
-            "name" : "Lunchables Variety Pack",
+            "name" : "Himalayan Salt",
             "category" : 1,
-            "cost" : 11.50,
+            "cost" : 6.00,
             "quantity": 3,
-            "image" : "https://m.media-amazon.com/images/I/71WCbqIetQL._SL1500_.jpg"
+            "image" : "https://i.pinimg.com/originals/52/23/cf/5223cfef76cf00be832106eb8e915d1a.jpg"
         }
     },
     {
         "model": "shop_app.item",
         "pk" : 4,
         "fields" : {
-            "name" : "Sprite, 12 Pack",
+            "name" : "Combo Pack x10 Soaps",
             "category" : 2,
-            "cost" : 8.50,
+            "cost" : 45.00,
             "quantity": 1,
-            "image" : "https://m.media-amazon.com/images/I/71BEW7IK0TL._SL1500_.jpg"
+            "image" : "https://i.etsystatic.com/28081176/r/il/b0837c/3091129495/il_1588xN.3091129495_45ui.jpg"
         }
     },
     {
