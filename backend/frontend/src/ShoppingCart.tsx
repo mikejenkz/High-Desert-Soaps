@@ -5,11 +5,11 @@ import { UserContext } from './App';
 import { Card } from 'react-bootstrap';
 import { ListGroup } from 'react-bootstrap';
 import ListGroupItem from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import AppFooter from './modules/views/AppFooter';
 import { PaymentForm } from 'react-square-web-payments-sdk';
 import { CreditCard } from 'react-square-web-payments-sdk';
+import { Link } from 'react-router-dom';
 
 
 function ShoppingCart() {
@@ -28,7 +28,7 @@ function ShoppingCart() {
         doesntExist = false
         shop[x].total += parseInt(shop[x].cost)
         setShop(shop);
-        setCount(count+1);
+        setCount(count+shop[x].cost);
         console.log(shop)
       }
     }
@@ -39,6 +39,27 @@ function ShoppingCart() {
     }
   
   }
+
+  function remove(props:any) {
+    let doesntExist=true
+    for(var x in shop) {
+      if(shop[x].quanity != 1) {
+        shop[x].quanity-=1
+        doesntExist = false
+        shop[x].total -= parseInt(shop[x].cost)
+        setShop(shop);
+        setCount(count-shop[x].cost);
+        console.log(shop)
+      }
+      else {
+        setShop(shop.filter(shop => shop !== props))
+        console.log(shop)
+        setCount(count-props.cost)
+      }
+    }
+  
+  }
+
 
   console.log(shop)
 
@@ -59,13 +80,18 @@ function ShoppingCart() {
       </ListGroup>
       
       <button onClick ={ () => addToCart(i)} style={{width:"30%", color: 'white', backgroundColor:'green', cursor:'pointer'}}>Add To Cart</button>
-      <button onClick ={ () => addToCart(i)} style={{width:"30%", color: 'white', backgroundColor:'red', cursor:'pointer'}}>Remove</button>
+      <button onClick ={ () => remove(i)} style={{width:"30%", color: 'white', backgroundColor:'red', cursor:'pointer'}}>Remove</button>
 
       </Card.Body>
     </Card>
             ))}
+        <h1>Total Cost: {count}</h1>
+        <h1>Click Below to Checkout</h1>
+      <Link to ='../checkout/'> 
+      <button> Check Out</button>
+      </Link>
   </div>
-  <div style={{width:'30%',alignContent:'center', position:'fixed',marginLeft:'70%',right:'0%',top:'30%'}}> 
+  {/* <div style={{width:'30%',alignContent:'center', position:'relative',marginLeft:'70%',right:'0%',top:'30%'}}> 
       <PaymentForm 
         applicationId="sandbox-sq0idb-WrOVw2MOfsoWTKxZajXkKQ"
         cardTokenizeResponseReceived={async (token, verifiedBuyer) => {
@@ -87,7 +113,7 @@ function ShoppingCart() {
   }}
 />
       </PaymentForm>
-      </div>
+      </div> */}
 
         <AppFooter/>
         </div>

@@ -6,14 +6,24 @@ import Typography from '../components/Typography';
 import TextField from '../components/TextField';
 import Snackbar from '../components/Snackbar';
 import Button from '../components/Button';
+import axios from 'axios';
+
 
 function ProductCTA() {
   const [open, setOpen] = React.useState(false);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event:any) => {
     event.preventDefault();
-    setOpen(true);
+    const data = new FormData(event.currentTarget);
+    console.log(data)
+    let response = await axios.post('/user/check/', data)
+    console.log(response.data.email)
+
+    
+
   };
+
+
 
   const handleClose = () => {
     setOpen(false);
@@ -43,6 +53,8 @@ function ProductCTA() {
                 noBorder
                 placeholder="Your email"
                 variant="standard"
+                id="email"
+                name='email'
                 sx={{ width: '100%', mt: 3, mb: 2 }}
               />
               <Button
@@ -62,7 +74,7 @@ function ProductCTA() {
           md={6}
           sx={{ display: { md: 'block', xs: 'none' }, position: 'relative' }}
         >
-          <Box
+          {/* <Box
             sx={{
               position: 'absolute',
               top: -67,
@@ -72,7 +84,7 @@ function ProductCTA() {
               width: '100%',
               background: 'url(/static/themes/onepirate/productCTAImageDots.png)',
             }}
-          />
+          /> */}
           <Box
             component="img"
             src="https://th.bing.com/th/id/R.571f7b3c1ef0e8a5e9945724c77acb4f?rik=REH1k0KL%2fGlJHw&riu=http%3a%2f%2fsunlitspaces.com%2fwp-content%2fuploads%2f2018%2f12%2fshutterstock_564702328.jpg&ehk=6R%2btE6UIyhJ4OYejVCs6D9lYGyHAZPLwmAy0KOrSL2M%3d&risl=&pid=ImgRaw&r=0"

@@ -4,6 +4,8 @@ from rest_framework.decorators import api_view
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.core.serializers import serialize
+import requests
+from .models import *
 
 import json
 
@@ -86,4 +88,35 @@ def user_log_out(request):
     except Exception as e:
         print(e)
         return JsonResponse({"logout":False})
+    
+@api_view(['POST'])
+def user_check(request):
+    check = request.data['email']
+    try:
+        r = requests.get(f'https://api.hunter.io/v2/email-verifier?email={check}&api_key=7bb5c4abef7291c0da462af44742c34e4d3f7bf8')
+        fullContent = r.content
+        body = json.loads(r.content)
+        if ((body['data']['status']) == 'valid'):
+            subscriber = Subscribers.objects.create(email = check)
+            subscriber.save()
+        return JsonResponse({"AccountAdded":True})
+    except Exception as e:
+        print(e)
+        return JsonResponse({"AccountNotAdded":False})
+    
+@api_view(['POST'])
+def random_fact(request):
+    try:
+        r = requests.get('https://api.adviceslip.com/advice')
+        fullContent = r.content
+        body = json.loads(r.content)
+        body = body['slip']['advice']
+        print(body)
+        return JsonResponse(body)
+    except Exception as e:
+        print(e)
+        return JsonResponse(body)
+
+    
+
 

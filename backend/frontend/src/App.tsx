@@ -7,8 +7,10 @@ import { currUser } from './modules/components/utilities';
 import { createContext } from 'react';
 import { ReactDOM } from 'react';
 import React from 'react';
+import axios from 'axios';
 
 export const UserContext = createContext(null)
+
 
 function App() {
   const [user, setUser] = useState(null);
@@ -16,6 +18,7 @@ function App() {
   const [count, setCount] = useState(0)
 
   getToken()
+
 
   useEffect(() => {
     const getCurrUser = async () => {

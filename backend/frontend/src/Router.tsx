@@ -10,6 +10,7 @@ import React from "react";
 import ShoppingCart from "./ShoppingCart";
 import Products from "./modules/views/Products";
 import Payment from "./Payment";
+import Checkout from "./modules/views/Checkout";
 
 const router = createBrowserRouter ([
     {
@@ -45,7 +46,11 @@ const router = createBrowserRouter ([
         {
             path: 'payments',
             element: <Payment/>
-        }
+        },
+        {
+            path: 'checkout',
+            element: <Checkout/>
+    }
     ]
 
     }

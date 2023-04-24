@@ -4,6 +4,7 @@ import Box from '@mui/material/Box';
 import ButtonBase from '@mui/material/ButtonBase';
 import Container from '@mui/material/Container';
 import Typography from '../components/Typography';
+import { Link } from 'react-router-dom';
 
 const ImageBackdrop = styled('div')(({ theme }) => ({
   position: 'absolute',
@@ -107,7 +108,7 @@ export default function ProductCategories() {
       <Typography variant="h4" marked="center" align="center" component="h2">
         Start Shopping now!
       </Typography>
-      <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
+      <Link to = '/products/'> <Box sx={{ mt: 8, display: 'flex', flexWrap: 'wrap' }}>
         {images.map((image) => (
           <ImageIconButton
             key={image.title}
@@ -154,6 +155,7 @@ export default function ProductCategories() {
           </ImageIconButton>
         ))}
       </Box>
+      </Link>
     </Container>
   );
 }

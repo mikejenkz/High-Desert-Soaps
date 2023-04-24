@@ -1,4 +1,4 @@
-import * as React from 'react';
+
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,12 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios';
 import withRoot from './modules/withRoot';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { UserContext } from './App';
 import { useContext } from 'react';
 import AppFooter from './modules/views/AppFooter';
+import axios from 'axios';
 
 // function Copyright(props:any) {
 //   return (
@@ -34,9 +34,26 @@ import AppFooter from './modules/views/AppFooter';
 
 const theme = createTheme();
 
+const randomFact = async (event:any) => {
+  event.preventDefault();
+  let response = await axios.get('/randomfact/')
+  console.log(response.data)
+
+};
+
 const SignIn = () => {
+  const [data, setData] = useState([]);
   const {user}:any = useContext(UserContext)
   const {setUser}:any = useContext(UserContext)
+
+
+  useEffect(() => {
+    fetch('https://api.adviceslip.com/advice')
+      .then(response => response.json())
+      .then(data => setData(data.slip));
+  }, []);
+
+  console.log(data)
 
   const handleSubmit = async (event:any) => {
     event.preventDefault();
@@ -58,15 +75,27 @@ const logOut = async(event:any) => {
     }
 } 
   console.log(user)
+
+
+  // const randomFact = async (event:any) => {
+  //   event.preventDefault();
+  //   let response = await axios.post('/randomfact/')
+  //   console.log(response.data)
+  
+  // };  
+
   
   if (user.username != undefined){
+
+
+
     
     return(
       <div>
-        <a>
-        Welcome {user.first_name}
-        Thank you for being a member of our community.
-        </a>
+        <h1 style={{color:'black'}}>Welcome {user.first_name} </h1>
+        <h1 style={{color:'black'}}> Thank you for being a member of our community.</h1>
+        <h1 style={{color:'black'}}>Soap Advice: {data.advice}</h1>
+
         <Button
               fullWidth
               onClick = {logOut}

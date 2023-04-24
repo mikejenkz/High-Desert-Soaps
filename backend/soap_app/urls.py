@@ -13,4 +13,7 @@ urlpatterns = [
     path('user/login/', views.sign_in),
     path('products/', views.send_the_homepage),
     path('payments/', views.send_the_homepage),
+    path('user/check/', views.user_check),
+    path('checkout/', views.send_the_homepage),
+    path('randomfact/', views.random_fact),
 ]

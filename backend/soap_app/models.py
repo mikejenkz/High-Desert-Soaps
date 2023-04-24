@@ -10,4 +10,7 @@ class User(models.Model):
 
 	def __str__(self):
 		return f"{self.name} | {self.email}"
+	
+class Subscribers(models.Model):
+	email = models.EmailField(blank = False, null = False, unique = True)
 

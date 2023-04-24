@@ -29,7 +29,7 @@ function Products() {
 
   if (isLoading) return <LinearProgress/>
   if (error) return <div>Please Refresh Page and try again.</div>
-  let counter = 0  
+
   function addToCart(props:any) {
     let doesntExist=true
     for(var x in shop) {
@@ -38,13 +38,14 @@ function Products() {
         doesntExist = false
         shop[x].total += parseInt(shop[x].cost)
         setShop(shop)
-        setCount(count+1);
+        setCount(count+shop[x].cost);
         console.log(shop)
       }
     }
     if (doesntExist) { 
     shop.push({name:props.name, cost:props.cost,image:props.image,quanity:1,total:(props.cost)})
     setShop(shop)
+    setCount(count+props.cost)
     console.log(shop)
     }
   
