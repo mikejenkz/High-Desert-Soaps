@@ -43,39 +43,6 @@
             "quantity": 1,
             "image" : "https://i.etsystatic.com/28081176/r/il/b0837c/3091129495/il_1588xN.3091129495_45ui.jpg"
         }
-    },
-    {
-        "model": "shop_app.item",
-        "pk" : 5,
-        "fields" : {
-            "name" : "Nitro Cold Brew (8 Pack)",
-            "category" : 2,
-            "cost" : 25.43,
-            "quantity": 20,
-            "image" : "https://m.media-amazon.com/images/I/8140hJN7k9L._SL1500_.jpg"
-        }
-    },
-    {
-        "model": "shop_app.item",
-        "pk" : 6,
-        "fields" : {
-            "name" : "SOLO 18oz (312ct)",
-            "category" : 3,
-            "cost" : 24.43,
-            "quantity": 14,
-            "image" : "https://m.media-amazon.com/images/I/61hfzZPfnZL.jpg"
-        }
-    },
-    {
-        "model": "shop_app.item",
-        "pk" : 7,
-        "fields" : {
-            "name" : "Heavy-Duty Plates (125ct)",
-            "category" : 3,
-            "cost" : 14.99,
-            "quantity": 10,
-            "image" : "https://m.media-amazon.com/images/I/81wOgb9b7SS._AC_SL1500_.jpg"
-        }
     }
 
 ]
