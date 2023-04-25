@@ -13,6 +13,7 @@ function ProductCTA() {
   const [open, setOpen] = React.useState(false);
 
   const handleSubmit = async (event:any) => {
+    alert("We have added you to the email distro.")
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     console.log(data)

@@ -38,7 +38,7 @@ def sign_up(request):
 
 @api_view(['POST','GET'])
 def sign_in(request):
-    #print(request.data)
+
     email = request.data['email']
     password = request.data['password']
     #print(email + password)

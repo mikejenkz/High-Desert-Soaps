@@ -31,6 +31,7 @@ function Products() {
   if (error) return <div>Please Refresh Page and try again.</div>
 
   function addToCart(props:any) {
+    alert(`You have added ${props.name} to your cart.`)
     let doesntExist=true
     for(var x in shop) {
       if(shop[x].name == props.name) {
