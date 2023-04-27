@@ -104,7 +104,7 @@ def user_check(request):
         print(e)
         return JsonResponse({"AccountNotAdded":False})
     
-@api_view(['POST'])
+@api_view(["GET"])
 def random_fact(request):
     try:
         r = requests.get('https://api.adviceslip.com/advice')
@@ -116,6 +116,45 @@ def random_fact(request):
     except Exception as e:
         print(e)
         return JsonResponse(body)
+    
+@api_view(['POST','GET'])    
+def add_order(request):
+    print(request)
+    return JsonResponse(True)
+
+
+@api_view(['GET'])    
+def all_users(request):
+    userList = []
+    users = User.objects.all()
+    for user in users:
+        userList.append(user.username)
+    return JsonResponse({"users":userList})
+
+
+@api_view(['POST','GET'])    
+def all_subscribers(request):
+    userList = []
+    users = Subscribers.objects.all()
+    for user in users:
+        userList.append(user.email)
+    return JsonResponse({"emails":userList})
+
+
+@api_view(['POST','GET'])    
+def delete_subscribers(request):
+    print(request.data['user'])
+    subscriber = Subscribers.objects.get(email = request.data['user'])
+    subscriber.delete()
+    return JsonResponse({"user":'deleted'})
+
+@api_view(['POST','GET'])    
+def delete_user(request):
+    print(request.data['user'])
+    user = User.objects.get(username = request.data['user'])
+    user.delete()
+
+    return JsonResponse({"user":'deleted'})
 
     
 

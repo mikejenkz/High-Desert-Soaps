@@ -11,6 +11,7 @@ import ShoppingCart from "./ShoppingCart";
 import Products from "./modules/views/Products";
 import Payment from "./Payment";
 import Checkout from "./modules/views/Checkout";
+import Admin from "./modules/views/Admin";
 
 const router = createBrowserRouter ([
     {
@@ -50,7 +51,12 @@ const router = createBrowserRouter ([
         {
             path: 'checkout',
             element: <Checkout/>
-    }
+    },
+    {
+        path: 'adminfunc',
+        element: <Admin/>
+}
+
     ]
 
     }

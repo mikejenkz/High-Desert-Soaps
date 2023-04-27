@@ -16,6 +16,7 @@ function App() {
   const [user, setUser] = useState(null);
   const [shop, setShop] = useState([])
   const [count, setCount] = useState(0)
+  const [address, setAddress] = useState(null)
 
   getToken()
 

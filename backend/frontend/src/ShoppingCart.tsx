@@ -52,7 +52,7 @@ function ShoppingCart() {
         console.log(shop)
       }
       else {
-        setShop(shop.filter(shop => shop !== props))
+        setShop(shop.filter((shop: any) => shop !== props))
         console.log(shop)
         setCount(count-props.cost)
       }
@@ -61,11 +61,11 @@ function ShoppingCart() {
   }
 
 
-  console.log(shop)
+  //console.log(shop)
 
     return (
 <div> 
-            <div style={{display:'inline-block', justifyContent:'space-between', width:'70%', position:'relative'
+            <div style={{display:'inline-block', justifyContent:'space-between', width:'100%', position:'relative'
           , left: '0px'}}>
 {shop.map((i:any, item:any) => ( 
       <Card style={{ width: '18rem', float: 'left'}}>
@@ -85,12 +85,13 @@ function ShoppingCart() {
       </Card.Body>
     </Card>
             ))}
-        <h1>Total Cost: {count}</h1>
-        <h1>Click Below to Checkout</h1>
+            </div>
+            <br/>
+        <a style={{fontSize: '30px'}}>Total Cost: ${count}.00 <br/> </a>
+        <a style={{fontSize: '30px'}}>Click Below to Checkout <br/></a>
       <Link to ='../checkout/'> 
-      <button> Check Out</button>
+      <button style={{fontSize: '30px',padding:'12px 24px', backgroundColor:'blue',color:'white'}}> Check Out</button>
       </Link>
-  </div>
   {/* <div style={{width:'30%',alignContent:'center', position:'relative',marginLeft:'70%',right:'0%',top:'30%'}}> 
       <PaymentForm 
         applicationId="sandbox-sq0idb-WrOVw2MOfsoWTKxZajXkKQ"

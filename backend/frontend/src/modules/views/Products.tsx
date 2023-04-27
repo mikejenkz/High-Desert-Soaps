@@ -7,7 +7,7 @@ import { Grid, LinearProgress } from '@mui/material';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { CardGroup, ListGroup } from 'react-bootstrap';
-import { UserContext } from '../../App'
+import { UserContext } from '../../App';
 import { useContext } from 'react';
 
 
@@ -47,7 +47,7 @@ function Products() {
     shop.push({name:props.name, cost:props.cost,image:props.image,quanity:1,total:(props.cost)})
     setShop(shop)
     setCount(count+props.cost)
-    console.log(shop)
+    //console.log(shop)
     }
   
   }
@@ -60,9 +60,6 @@ function Products() {
 
 
 
-  if(user!= null){
-    console.log(user.user)
-  }
 
 
 

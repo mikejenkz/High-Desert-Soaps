@@ -55,6 +55,8 @@ const SignIn = () => {
 
   console.log(data)
 
+
+
   const handleSubmit = async (event:any) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -95,6 +97,7 @@ const logOut = async(event:any) => {
         <h1 style={{color:'black'}}>Welcome {user.first_name} </h1>
         <h1 style={{color:'black'}}> Thank you for being a member of our community.</h1>
         <h1 style={{color:'black'}}>Soap Advice: {data.advice}</h1>
+        <Link to = '../adminfunc'> <button> Admin Page</button></Link>
 
         <Button
               fullWidth

@@ -15,6 +15,9 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import AddressForm from './AdressForm';
 import Review from './Review';
 import PaymentForm from './PaymentForm';
+import { useContext } from 'react';
+import { UserContext } from '../../App';
+import axios from 'axios';
 
 function Copyright() {
   return (
@@ -30,14 +33,22 @@ function Copyright() {
 }
 
 const steps = ['Shipping address', 'Payment details', 'Review your order'];
-
 function getStepContent(step: number) {
+  const {user}:any = useContext(UserContext)
   switch (step) {
     case 0:
       return <AddressForm />;
     case 1:
       return <PaymentForm />;
     case 2:
+      const handleSubmit = async (event:any) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        console.log(data)
+        // let response = await axios.post('../user/login/', data)  
+      };
+      handleSubmit
+      console.log('yes')
       return <Review />;
     default:
       throw new Error('Unknown step');
@@ -48,9 +59,23 @@ const theme = createTheme();
 
 export default function Checkout() {
   const [activeStep, setActiveStep] = React.useState(0);
+  const {shop}:any = useContext(UserContext)
+  const {setShop}:any = useContext(UserContext)
+  const {count}:any = useContext(UserContext)
+  const {setCount}:any = useContext(UserContext)
 
-  const handleNext = () => {
+  const handleNext = async (event:any) => {
     setActiveStep(activeStep + 1);
+    if (activeStep == 2) {
+      // event.preventDefault();
+      // const data = new FormData(event.target);
+      // console.log(data)
+      // let response = await axios.post('../addorder/',data)
+      // console.log(response)
+      setShop([])
+      setCount(0)
+    }
+    //console.log(event.target)
   };
 
   const handleBack = () => {

@@ -16,4 +16,11 @@ urlpatterns = [
     path('user/check/', views.user_check),
     path('checkout/', views.send_the_homepage),
     path('randomfact/', views.random_fact),
+    path('addorder/',views.add_order),
+    path('adminfunc/',views.send_the_homepage),
+    path('allusers/',views.all_users),
+    path('allsubscribers/',views.all_subscribers),
+    path('deletesubscriber/',views.delete_subscribers),
+    path('deleteuser/',views.delete_user)
+
 ]

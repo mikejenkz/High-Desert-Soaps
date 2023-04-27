@@ -38,13 +38,14 @@ function SignUp() {
     event.preventDefault();
     const newData = new FormData(event.currentTarget);
     axios.post('', newData)
-    console.log(newData)
-    console.log({
-      firstName: newData.get('firstName'),
-      lastName : newData.get('lastName'),
-      email: newData.get('email'),
-      password: newData.get('password'),
-    });
+    alert(`Welcome ${newData.get('firstName')} Please go to sign in page to login.`)
+    // console.log(newData)
+    // console.log({
+    //   firstName: newData.get('firstName'),
+    //   lastName : newData.get('lastName'),
+    //   email: newData.get('email'),
+    //   password: newData.get('password'),
+    // });
   };
 
   return (
